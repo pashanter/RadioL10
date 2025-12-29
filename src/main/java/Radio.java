@@ -2,16 +2,39 @@ public class Radio {
 
     private int currentRadioStation;
     private int currentVolume;
+    private int defaultNumberOfRadioStations = 10;
+    private int minRadioStation;
+    private int maxRadioStation = defaultNumberOfRadioStations - 1;
+
+
+    public Radio(int newAmountRadioStations) {
+        defaultNumberOfRadioStations = newAmountRadioStations;
+        maxRadioStation = newAmountRadioStations - 1;
+    }
+
+    public Radio() {
+        this.defaultNumberOfRadioStations = defaultNumberOfRadioStations;
+        maxRadioStation = this.defaultNumberOfRadioStations - 1;
+    }
+
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
+    public int getMinRadioStation() {
+        return minRadioStation;
+    }
+
+    public int getMaxRadioStation() {
+        return maxRadioStation;
+    }
+
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+        if (newCurrentRadioStation < minRadioStation) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > maxRadioStation) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
@@ -32,17 +55,19 @@ public class Radio {
     }
 
     public void next() {
-        if (currentRadioStation != 9) {
+        if (currentRadioStation != maxRadioStation) {
             currentRadioStation++;
-        } else
+        } else {
             currentRadioStation = 0;
+        }
     }
 
     public void prev() {
-        if (currentRadioStation != 0) {
+        if (currentRadioStation != minRadioStation) {
             currentRadioStation--;
-        } else
+        } else {
             currentRadioStation = 9;
+        }
     }
 
 
@@ -63,64 +88,7 @@ public class Radio {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //    public void nextStation() {
-//
-//        int next = currentRadioStation + 1;
-//        if (next < 9) {
-//            setCurrentRadioStation(next);
-//        } else {
-//            currentRadioStation = 0;
-//        }
-//
-//    }
-//
-//
-//    public void previousStation() {
-//        int prev = currentRadioStation - 1;
-//        if (prev > 0) {
-//            setCurrentRadioStation(prev);
-//        } else {
-//            currentRadioStation = 9;
-//        }
-//
-//    }
-
-
-//    public void increaseVolume() {
-//        int plus = currentVolume + 1;
-//        if (plus < 100) {
-//            //currentVolume = currentVolume + 1;
-//            setCurrentVolume(plus);
-//        } else {
-//            currentVolume = 100;
-//        }
-//    }
-//
-//    public void reduceVolume() {
-//        int minus = currentVolume - 1;
-//        if (minus < 0) {
-//            currentVolume = 0;
-//        } else {
-//            //currentVolume = currentVolume - 1;
-//            setCurrentVolume(minus);
-//        }
-//    }
+    public int getDefaultNumberOfRadioStations() {
+        return defaultNumberOfRadioStations;
+    }
 }
